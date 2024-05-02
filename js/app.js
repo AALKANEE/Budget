@@ -16,8 +16,14 @@ class HTML{
     // print all message for user in html
     printMessage(message,className){
         const div=document.createElement('div')
-    div.classList.add('alert', 'alert-center',className)
-    console.log(div)
+    div.classList.add('alert', 'text-center',className)
+    const primary=document.querySelector('.primary')
+    primary.insertBefore(div,addExpenseForm)
+    div.appendChild(document.createTextNode(message)) 
+    setTimeout(() => {
+        document.querySelector('.alert').remove()
+    }, 3000);
+    addExpenseForm.reset()
     }
 
 }
@@ -63,7 +69,7 @@ function eventListeners(){
         if(expense==='' || amount===''){
             html.printMessage('همه موارد الزامی است','alert-danger')
         }else{
-            console.log('correct')
+            html.printMessage('همه موارد درست است','alert-success')
         }
     });
 }
