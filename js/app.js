@@ -13,6 +13,13 @@ class HTML{
         budgetLeft.innerHTML=amount
     }
 
+    // print all message for user in html
+    printMessage(message,className){
+        const div=document.createElement('div')
+    div.classList.add('alert', 'alert-center',className)
+    console.log(div)
+    }
+
 }
 
 
@@ -52,8 +59,12 @@ function eventListeners(){
         //access to the value of input
         const expense=document.querySelector('#expense').value
         const amount=document.querySelector('#amount').value
-        console.log(expense)
-        console.log(amount)
+       
+        if(expense==='' || amount===''){
+            html.printMessage('همه موارد الزامی است','alert-danger')
+        }else{
+            console.log('correct')
+        }
     });
 }
 
