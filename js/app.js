@@ -25,7 +25,19 @@ class HTML{
     }, 3000);
     addExpenseForm.reset()
     }
+    //display expenses to the list
+    insertExpense(name,amount){
+        const expenses=document.querySelector('#expenses ul')
 
+        let li=document.createElement( "li" )
+        li.className='list-group-item d-flex justify-content-between align-items-center'
+        li.innerHTML=`
+        ${name}
+          <span class="badge badge-primary badge-pill">${amount}</span>
+        `
+
+        expenses.appendChild(li)
+    }
 }
 
 
@@ -69,7 +81,7 @@ function eventListeners(){
         if(expense==='' || amount===''){
             html.printMessage('همه موارد الزامی است','alert-danger')
         }else{
-            html.printMessage('همه موارد درست است','alert-success')
+            html.insertExpense(expense,amount)
         }
     });
 }
