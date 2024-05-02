@@ -9,8 +9,8 @@ class Budget{
 class HTML{
     //insert user budget to the html
     insertBudget(amount){
-        console.log(budgetTotal)
-        console.log(budgetLeft)
+        budgetTotal.innerHTML=amount
+        budgetLeft.innerHTML=amount
     }
 
 }
@@ -21,6 +21,7 @@ let userBudget;
 let budget;
 let budgetTotal=document.querySelector('span#total')
 let budgetLeft=document.querySelector('span#left')
+const addExpenseForm=document.querySelector('#add-expense')
 const html=new HTML()
 
 
@@ -43,5 +44,16 @@ function eventListeners(){
             html.insertBudget(budget.budget)
         }
     })
+
+    //get value from the form when submited
+    addExpenseForm.addEventListener('submit',function(e){
+        e.preventDefault()
+
+        //access to the value of input
+        const expense=document.querySelector('#expense').value
+        const amount=document.querySelector('#amount').value
+        console.log(expense)
+        console.log(amount)
+    });
 }
 
