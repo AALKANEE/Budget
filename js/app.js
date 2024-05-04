@@ -25,7 +25,7 @@ class HTML{
     const div=document.createElement('div')
     div.classList.add('alert', 'text-center',className)
     div.appendChild(document.createTextNode(message)) 
-    
+
     const primary=document.querySelector('.primary')
     primary.insertBefore(div,addExpenseForm)
    
@@ -87,7 +87,7 @@ function eventListeners(){
         console.log(userBudget)
 
         //validate user budget 
-        if (userBudget===null || userBudget==='' || userBudget==='0') {
+        if (!userBudget || isNaN(userBudget) ||userBudget.trim()===''  || parseFloat(userBudget) <=0) {
             window.location.reload()
         }else{
             // instanciate Budget class
