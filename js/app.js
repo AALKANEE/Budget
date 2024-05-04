@@ -105,7 +105,7 @@ function eventListeners(){
         const expense=document.querySelector('#expense').value
         const amount=document.querySelector('#amount').value
        
-        if(expense==='' || amount===''){
+        if(isFinite(expense) || expense.trim()==='' || amount.trim()==='' || parseFloat(amount) <=0 || isNaN(amount)){
             html.printMessage('همه موارد الزامی است','alert-danger')
         }else{
             html.insertExpense(expense,amount)
