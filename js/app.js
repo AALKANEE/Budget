@@ -2,6 +2,13 @@
 class Budget{
     constructor(budget){
         this.budget=budget;
+        this.budgetLeft=this.budget
+    }
+
+    subtractFromBudget(amount){
+        return this.budgetLeft -= amount;
+
+       
     }
 }
 
@@ -37,6 +44,12 @@ class HTML{
         `
 
         expenses.appendChild(li)
+    }
+
+    // subtract expense from the budget
+    trackBudget(amount){
+        const budgetLeftTomans=budget.subtractFromBudget(amount);
+        budgetLeft.innerHTML=`${budgetLeftTomans}`
     }
 }
 
@@ -82,6 +95,7 @@ function eventListeners(){
             html.printMessage('همه موارد الزامی است','alert-danger')
         }else{
             html.insertExpense(expense,amount)
+            html.trackBudget(amount)
         }
     });
 }
