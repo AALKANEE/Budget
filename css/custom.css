@@ -39,6 +39,10 @@ h2 {
     margin-bottom:30px;
 }
 
+.footer{
+    color: orange;
+}
+
 @font-face {
     font-family: Vazir;
     src: url('Vazir-Bold.eot');
