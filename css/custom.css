@@ -24,8 +24,9 @@ header {
 .budget p span {
     font-weight: normal;
 }
-#expenses {
-    margin-bottom: 30px;
+#expenses li {
+    color: #000428;
+    margin-bottom: 10px;
 }
 h1{
     font-weight: 100;

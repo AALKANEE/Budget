@@ -44,6 +44,7 @@ class HTML{
         ${name}
           <span class="badge badge-primary badge-pill">${amount}</span>
         `
+        this.removeBtn(li);
 
         expenses.appendChild(li)
     }
@@ -65,8 +66,24 @@ class HTML{
             budgetLeft.parentElement.parentElement.classList.add('alert-warning')
         }
     }
-}
+    
+    // remove wrong expense
+    removeBtn(expense){
+        const removeBtn=document.createElement('button')
+        removeBtn.textContent= 'X'
+        removeBtn.classList='remove-expense'
+        removeBtn.classList.add('btn','btn-danger','btn-sm','float-right','remove-btn')
+        expense.appendChild(removeBtn)
 
+        //Add event for remove button
+    removeBtn.addEventListener('click',()=>{
+        expense.remove();
+    });
+    }
+    
+    
+
+}
 
 // variable
 let userBudget;
@@ -75,6 +92,7 @@ let budgetTotal=document.querySelector('span#total')
 let budgetLeft=document.querySelector('span#left')
 const addExpenseForm=document.querySelector('#add-expense')
 const html=new HTML()
+
 
 
 
@@ -112,5 +130,6 @@ function eventListeners(){
             html.trackBudget(amount)
         }
     });
+    
 }
 
