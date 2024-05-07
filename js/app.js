@@ -7,8 +7,10 @@ class Budget{
 
     subtractFromBudget(amount){
         return this.budgetLeft -= amount;
+    }
 
-       
+    addBackToBudget(amount){
+        return this.budgetLeft += amount;
     }
 }
 
@@ -44,7 +46,7 @@ class HTML{
         ${name}
           <span class="badge badge-primary badge-pill">${amount}</span>
         `
-        this.removeBtn(li);
+        this.removeBtn(li,amount);
 
         expenses.appendChild(li)
     }
@@ -68,7 +70,7 @@ class HTML{
     }
     
     // remove wrong expense
-    removeBtn(expense){
+    removeBtn(expense,amount){
         const removeBtn=document.createElement('button')
         removeBtn.textContent= 'X'
         removeBtn.classList='remove-expense'
@@ -77,10 +79,14 @@ class HTML{
 
         //Add event for remove button
     removeBtn.addEventListener('click',()=>{
-        expense.remove();
+        expense.remove();// remove expense from the dom
+        budget.addBackToBudget(parseFloat(amount)); //add back the removed amount to the budget
+        html.updateBudgetDisplay();
     });
     }
-    
+    updateBudgetDisplay(){
+        budgetLeft.innerHTML=budget.budgetLeft;
+    }
     
 
 }
