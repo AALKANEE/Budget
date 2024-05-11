@@ -82,6 +82,7 @@ class HTML{
         expense.remove();// remove expense from the dom
         budget.addBackToBudget(parseFloat(amount)); //add back the removed amount to the budget
         html.updateBudgetDisplay();
+        html.removeExpenseInLocalStorage(name);
     });
     }
     updateBudgetDisplay(){
@@ -98,13 +99,13 @@ class HTML{
         const expenses=JSON.parse(localStorage.getItem('expenses')) || [];
         expenses.forEach(expense => {
             html.insertExpense(expense.name,expense.amount);
-            html.trackBudget(expense.amount)
-            
-        });
-    }
+            html.trackBudget(expense.amount)});
+        }
     
-
+    
+    
 }
+    
 
 // variable
 let userBudget;
@@ -157,5 +158,6 @@ function eventListeners(){
         }
     });
     
+
 }
 
