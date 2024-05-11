@@ -87,6 +87,21 @@ class HTML{
     updateBudgetDisplay(){
         budgetLeft.innerHTML=budget.budgetLeft;
     }
+    // add to local storage
+    addExpenseToLocalStorage(expense,amount){
+        const expenses=JSON.parse(localStorage.getItem('expenses')) || [];
+        expenses.push({expense,amount});
+        localStorage.setItem('expenses',JSON.stringify(expenses));
+    }
+    // recovery from local storage
+    getExpensesFromLocalStorage(){
+        const expenses=JSON.parse(localStorage.getItem('expenses')) || [];
+        expenses.forEach(expense => {
+            html.insertExpense(expense.name,expense.amount);
+            html.trackBudget(expense.amount)
+            
+        });
+    }
     
 
 }
@@ -98,6 +113,7 @@ let budgetTotal=document.querySelector('span#total')
 let budgetLeft=document.querySelector('span#left')
 const addExpenseForm=document.querySelector('#add-expense')
 const html=new HTML()
+
 
 
 
@@ -118,6 +134,9 @@ function eventListeners(){
             budget =new Budget(userBudget)
             console.log(budget)
             html.insertBudget(budget.budget)
+
+            //get expenses from localStorage and display them
+            html.getExpensesFromLocalStorage();
         }
     })
 
@@ -133,7 +152,8 @@ function eventListeners(){
             html.printMessage('همه موارد الزامی است','alert-danger')
         }else{
             html.insertExpense(expense,amount)
-            html.trackBudget(amount)
+            html.trackBudget(amount);
+            html.addExpenseToLocalStorage(expense,amount);// add expense to local Storage
         }
     });
     
