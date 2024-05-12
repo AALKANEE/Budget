@@ -57,16 +57,20 @@ class HTML{
         budgetLeft.innerHTML=`${budgetLeftTomans}`
 
         
-        if((budget.budget /4) > budgetLeftTomans){
+        if((budget.budget /4) >= budgetLeftTomans){
             //if less than 25% budgt left change color to the warning
             budgetLeft.parentElement.parentElement.classList.remove('alert-success','alert-warning')
             budgetLeft.parentElement.parentElement.classList.add('alert-danger')
 
         }else if((budget.budget /2) > budgetLeftTomans){
             //if less than 25% budgt left change color to the warning
-            budgetLeft.parentElement.parentElement.classList.remove('alert-success')
+            budgetLeft.parentElement.parentElement.classList.remove('alert-danger')
             budgetLeft.parentElement.parentElement.classList.add('alert-warning')
+        }else{
+            budgetLeft.parentElement.parentElement.classList.remove('alert-danger','alert-warning')
+            budgetLeft.parentElement.parentElement.classList.add('alert-success');
         }
+     
     }
     
     // remove wrong expense
